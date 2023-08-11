@@ -30,6 +30,44 @@ public class SinglyLinkedList {
         }
     }
 
+    // Insertion at the Beginning
+    public void insertAtBeginning(int data) {
+        ListNode newNode = new ListNode(data);
+        newNode.next = head;
+        head = newNode;
+    }
+
+    // Insertion at the End
+    public void insertAtEnd(int data) {
+        ListNode newNode = new ListNode(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        ListNode current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = newNode;
+    }
+
+    // Insertion at a Specific Position
+    public void insertAtPosition(int data, int position) {
+        if (position <= 0) {
+            insertAtBeginning(data);
+            return;
+        }
+        ListNode newNode = new ListNode(data);
+        ListNode current = head;
+        for (int i = 1; i < position && current != null; i++) {
+            current = current.next;
+        }
+        if (current != null) {
+            newNode.next = current.next;
+            current.next = newNode;
+        }
+    }
+
     public void removeData(int data) {
         if (head == null) {
             return;

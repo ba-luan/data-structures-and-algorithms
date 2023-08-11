@@ -33,6 +33,53 @@ public class DoublyLinkedList {
         }
     }
 
+    // Insertion at the Beginning
+    public void insertAtBeginning(int data) {
+        DoublyListNode newNode = new DoublyListNode(data);
+        newNode.next = head;
+        if (head != null) {
+            head.prev = newNode;
+        }
+        head = newNode;
+        if (tail == null) {
+            tail = newNode;
+        }
+    }
+
+    // Insertion at the End
+    public void insertAtEnd(int data) {
+        DoublyListNode newNode = new DoublyListNode(data);
+        newNode.prev = tail;
+        if (tail != null) {
+            tail.next = newNode;
+        }
+        tail = newNode;
+        if (head == null) {
+            head = newNode;
+        }
+    }
+
+    // Insertion at a Specific Position
+    public void insertAtPosition(int data, int position) {
+        if (position <= 0) {
+            insertAtBeginning(data);
+            return;
+        }
+        DoublyListNode newNode = new DoublyListNode(data);
+        DoublyListNode current = head;
+        for (int i = 1; i < position && current != null; i++) {
+            current = current.next;
+        }
+        if (current != null) {
+            newNode.next = current.next;
+            if (current.next != null) {
+                current.next.prev = newNode;
+            }
+            newNode.prev = current;
+            current.next = newNode;
+        }
+    }
+
     public void removeData(int data) {
         DoublyListNode current = head;
         while (current != null) {
@@ -116,11 +163,12 @@ public class DoublyLinkedList {
             temp = current.prev;
             current.prev = current.next;
             current.next = temp;
-            current = current.prev;
+            current = current.prev; // prev was updated using current.next; this acctually move the pointer to the next node of the original list.
         }
 
         if (temp != null) {
-            head = temp.prev;
+            tail = head;
+            head = temp.prev; // at the end of for loop temp is at the second last node; temp.prev means move to the last node of the original list.
         }
     }
 
