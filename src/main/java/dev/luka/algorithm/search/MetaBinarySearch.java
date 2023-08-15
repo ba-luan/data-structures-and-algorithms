@@ -1,8 +1,4 @@
-package luka.algorithm.search;
-import com.google.common.math.BigIntegerMath;
-
-import java.math.BigInteger;
-import java.math.RoundingMode;
+package dev.luka.algorithm.search;
 
 public class MetaBinarySearch {
     public static int metaBinarySearch(int[] array, int target) {

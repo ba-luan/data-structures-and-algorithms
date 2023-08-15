@@ -1,4 +1,4 @@
-package luka.algorithm.search;
+package dev.luka.algorithm.search;
 
 public class TernarySearch {
     public static int ternarySearch(int[] array, int target) {

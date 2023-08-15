@@ -1,4 +1,4 @@
-package luka.algorithm.search;
+package dev.luka.algorithm.search;
 
 /*
 Sentinel Search improve Average Time Complexity by eliminate the comparison of the index if it reaches the array length.

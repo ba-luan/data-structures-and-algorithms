@@ -1,4 +1,4 @@
-package luka.algorithm.sort;
+package dev.luka.algorithm.sort;
 
 import java.util.Arrays;
 import java.util.Random;

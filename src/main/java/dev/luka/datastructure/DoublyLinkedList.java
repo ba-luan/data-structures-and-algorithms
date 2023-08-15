@@ -1,4 +1,4 @@
-package luka.datastructure;
+package dev.luka.datastructure;
 
 class DoublyListNode {
     int data;

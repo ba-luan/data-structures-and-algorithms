@@ -1,4 +1,4 @@
-package luka.algorithm.search;
+package dev.luka.algorithm.search;
 
 public class JumpSearch {
     public static int jumpSearch(int[] array, int target) {

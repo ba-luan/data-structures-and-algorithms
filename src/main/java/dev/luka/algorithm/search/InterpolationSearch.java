@@ -1,4 +1,4 @@
-package luka.algorithm.search;
+package dev.luka.algorithm.search;
 
 public class InterpolationSearch {
     public static int interpolationSearch(int[] array, int target) {

@@ -1,4 +1,4 @@
-package luka.datastructure;
+package dev.luka.datastructure;
 
 public class ArrayList<T> {
     private static final int INITIAL_CAPACITY = 10;

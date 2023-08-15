@@ -1,4 +1,4 @@
-package luka.algorithm.search;
+package dev.luka.algorithm.search;
 
 public class BinarySearch {
     public static int binarySearch(int[] array, int target) {

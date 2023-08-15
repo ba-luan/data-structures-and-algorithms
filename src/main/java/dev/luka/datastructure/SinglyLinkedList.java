@@ -1,4 +1,4 @@
-package luka.datastructure;
+package dev.luka.datastructure;
 
 class ListNode {
     int data;

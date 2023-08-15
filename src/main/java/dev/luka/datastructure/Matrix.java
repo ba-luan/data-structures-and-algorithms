@@ -1,4 +1,4 @@
-package luka.datastructure;
+package dev.luka.datastructure;
 
 public class Matrix {
     private int rows;
