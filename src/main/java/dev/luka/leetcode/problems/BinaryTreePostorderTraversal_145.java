@@ -67,17 +67,57 @@ public class BinaryTreePostorderTraversal_145 {
         return res;
     }
 
+    public List<Integer> postorderTraversalIterativeV3(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode current = root;
+        TreeNode lastVisited = null; // track the last node's value added to result array
+
+        while (current != null || !stack.isEmpty()) {
+            if (current != null) {
+                stack.push(current);
+                current = current.left;
+            } else {
+                TreeNode peekNode = stack.peek();
+                if (peekNode.right != null && lastVisited != peekNode.right) {
+                    current = peekNode.right;
+                } else {
+                    stack.pop();
+                    result.add(peekNode.val);
+                    lastVisited = peekNode;
+                }
+            }
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
         BinaryTreePostorderTraversal_145 binaryTree = new BinaryTreePostorderTraversal_145();
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
         root.right = new TreeNode(3);
-        root.right.left = new TreeNode(4);
-        root.right.right = new TreeNode(5);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+        root.left.left.left = new TreeNode(8);
+        root.left.left.right = new TreeNode(9);
+        root.left.right.left = new TreeNode(10);
+        root.left.right.right = new TreeNode(11);
+        root.right.left.left = new TreeNode(12);
+        root.right.left.right = new TreeNode(13);
+        root.right.right.left = new TreeNode(14);
+        root.right.right.right = new TreeNode(15);
 
         System.out.println(binaryTree.postorderTraversalRecursive(root));
         System.out.println(binaryTree.postorderTraversalIterative(root));
         System.out.println(binaryTree.postorderTraversalIterativeV2(root));
+        System.out.println(binaryTree.postorderTraversalIterativeV3(root));
     }
 
 }
