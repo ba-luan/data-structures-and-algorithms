@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class LongestCommonPrefix_14 {
 
-    public static String longestCommonPrefix(String[] v) {
+    public String longestCommonPrefix(String[] v) {
         StringBuilder ans = new StringBuilder();
         Arrays.sort(v);
         String first = v[0];
@@ -18,7 +18,7 @@ public class LongestCommonPrefix_14 {
         return ans.toString();
     }
 
-    public static String longestCommonPrefixV2(String[] strs) {
+    public String longestCommonPrefixV2(String[] strs) {
         if (strs == null || strs.length == 0) {
             return "";
         }
@@ -45,12 +45,29 @@ public class LongestCommonPrefix_14 {
         return prefix;
     }
 
+    public String longestCommonPrefixV3(String[] strs) {
+        StringBuilder res = new StringBuilder();
+
+        for (int i = 0; i < strs[0].length(); i++) {
+            for (String str : strs) {
+                if (i == str.length() || str.charAt(i) != strs[0].charAt(i)) return res.toString();
+            }
+            res.append(strs[0].charAt(i));
+        }
+
+        return res.toString();
+    }
 
     public static void main(String[] args) {
-        System.out.println(longestCommonPrefix(new String[]{"flower","flow","flight"})); // returns "fl"
-        System.out.println(longestCommonPrefix(new String[]{"dog","racecar","car"})); // returns ""
+        LongestCommonPrefix_14 solution = new LongestCommonPrefix_14();
 
-        System.out.println(longestCommonPrefixV2(new String[]{"flower","flow","flight"})); // returns "fl"
-        System.out.println(longestCommonPrefixV2(new String[]{"dog","racecar","car"})); // returns ""
+        System.out.println(solution.longestCommonPrefix(new String[]{"flower","flow","flight"})); // returns "fl"
+        System.out.println(solution.longestCommonPrefix(new String[]{"dog","racecar","car"})); // returns ""
+
+        System.out.println(solution.longestCommonPrefixV2(new String[]{"flower","flow","flight"})); // returns "fl"
+        System.out.println(solution.longestCommonPrefixV2(new String[]{"dog","racecar","car"})); // returns ""
+
+        System.out.println(solution.longestCommonPrefixV3(new String[]{"flower","flow","flight"})); // returns "fl"
+        System.out.println(solution.longestCommonPrefixV3(new String[]{"dog","racecar","car"})); // returns ""
     }
 }
