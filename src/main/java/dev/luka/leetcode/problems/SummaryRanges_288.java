@@ -23,4 +23,9 @@ public class SummaryRanges_288 {
         return res;
     }
 
+    public static void main(String[] args) {
+        SummaryRanges_288 solution = new SummaryRanges_288();
+        System.out.println(solution.summaryRanges(new int[]{0,1,2,4,5,7})); // Output: ["0->2","4->5","7"]
+        System.out.println(solution.summaryRanges(new int[]{0,2,3,4,6,8,9})); // Output: ["0","2->4","6","8->9"]
+    }
 }
