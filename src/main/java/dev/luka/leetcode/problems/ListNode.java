@@ -18,14 +18,20 @@ public class ListNode {
     }
 
     public void add(int val) {
-        ListNode newNode = new ListNode(val, null);
         ListNode cur = this;
-        ListNode last = this;
-        while (cur != null) {
-            last = cur;
+        while (cur.next != null) {
             cur = cur.next;
         }
-        last.next = newNode;
+        cur.next = new ListNode(val, null);
+    }
+
+    public ListNode addNext(int val) {
+        ListNode cur = this;
+        while (cur.next != null) {
+            cur = cur.next;
+        }
+        cur.next = new ListNode(val, null);
+        return cur.next;
     }
 
     public static void printList(ListNode head) {
