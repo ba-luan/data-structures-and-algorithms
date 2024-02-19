@@ -39,13 +39,53 @@ public class ReverseNodesInKGroup_25 {
         return cur;
     }
 
+    public ListNode reverseKGroupV2(ListNode head, int k) {
+        ListNode dummy = new ListNode(0, head);
+        ListNode prevGroupTail = dummy;
+
+        int i = 0;
+        while (head != null) {
+            i++;
+            if (i % k != 0) {
+                head = head.next; // keep iterating to kth node
+            } else {
+                prevGroupTail = reverse(prevGroupTail, head.next); // reverse and update prevGroupTail
+                head = prevGroupTail.next; // update new head
+            }
+        }
+
+        return dummy.next;
+    }
+
+    private ListNode reverse(ListNode prevGroupTail, ListNode nextGroupHead) {
+        ListNode head = prevGroupTail.next;
+        ListNode cur = head;
+        ListNode prev = nextGroupHead;
+
+        while (cur != nextGroupHead) {
+            ListNode next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
+        }
+        prevGroupTail.next = prev;
+
+        return head; // current group head now became its tail
+    }
+
     public static void main(String[] args) {
         ReverseNodesInKGroup_25 solution = new ReverseNodesInKGroup_25();
         ListNode head = new ListNode(1);
         head.addNext(2).addNext(3).addNext(4).addNext(5);
+        int k = 2;
 
         ListNode.printList(head);
-        head = solution.reverseKGroup(head, 2);
+        head = solution.reverseKGroup(head, k);
+        ListNode.printList(head);
+
+        head = new ListNode(1);
+        head.addNext(2).addNext(3).addNext(4).addNext(5);;
+        head = solution.reverseKGroupV2(head, k);
         ListNode.printList(head);
     }
 }
