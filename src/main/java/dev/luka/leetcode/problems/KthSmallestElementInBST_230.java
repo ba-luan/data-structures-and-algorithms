@@ -2,14 +2,12 @@ package dev.luka.leetcode.problems;
 
 import java.util.Stack;
 
-public class MinimumAbsoluteDifferenceInBST_530 {
+public class KthSmallestElementInBST_230 {
 
-    public int getMinimumDifference(TreeNode root) {
-        int minDiff = Integer.MAX_VALUE;
-        Integer prevValue = null;
-
+    public int kthSmallest(TreeNode root, int k) {
         Stack<TreeNode> stack = new Stack<>();
         TreeNode cur = root;
+        int count = 0;
 
         while (cur != null || !stack.isEmpty()) {
             while (cur != null) {
@@ -18,14 +16,13 @@ public class MinimumAbsoluteDifferenceInBST_530 {
             }
 
             cur = stack.pop();
-            if (prevValue != null) {
-                minDiff = Math.min(minDiff, cur.val - prevValue);
-            }
+            count++;
 
-            prevValue = cur.val;
+            if (count == k) return cur.val;
+
             cur = cur.right;
         }
 
-        return minDiff;
+        return Integer.MIN_VALUE; // dummy return statement to avoid compiler's complaint
     }
 }
