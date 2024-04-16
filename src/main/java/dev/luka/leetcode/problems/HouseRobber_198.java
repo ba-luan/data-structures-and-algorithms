@@ -1,6 +1,8 @@
 package dev.luka.leetcode.problems;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HouseRobber_198 {
 
@@ -35,6 +37,27 @@ public class HouseRobber_198 {
         return result;
     }
 
+    public int robMemoizationV2(int[] nums) {
+        Map<Integer, Integer> memo = new HashMap<>();
+        return robMemoizationV2(nums, 0, memo);
+    }
+
+    private int robMemoizationV2(int[] nums, int index, Map<Integer, Integer> memo) {
+        if (index >= nums.length) {
+            return 0;
+        }
+        if (memo.containsKey(index)) {
+            return memo.get(index);
+        }
+        // Either rob the current house and skip the next one, or skip the current house
+        int robCurrent = nums[index] + robMemoizationV2(nums, index + 2, memo);
+        int skipCurrent = robMemoizationV2(nums, index + 1, memo);
+        // Store the maximum amount of money for the current index in the memoization map
+        int maxAmount = Math.max(robCurrent, skipCurrent);
+        memo.put(index, maxAmount);
+        return maxAmount;
+    }
+
     public int robIterativeMemo(int[] nums) {
         if (nums.length == 0) return 0;
         int[] memo = new int[nums.length + 1];
@@ -64,6 +87,7 @@ public class HouseRobber_198 {
         int[] nums = {1,2,3,1};
         System.out.println(sol.robRecursion(nums));
         System.out.println(sol.robMemoization(nums));
+        System.out.println(sol.robMemoizationV2(nums));
         System.out.println(sol.robIterativeMemo(nums));
         System.out.println(sol.robIterative2Variables(nums));
     }
