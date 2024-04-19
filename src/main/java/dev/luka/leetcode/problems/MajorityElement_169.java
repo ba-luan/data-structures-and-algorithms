@@ -34,7 +34,8 @@ public class MajorityElement_169 {
     }
 
     // Time O(n); Space O(1)
-    public int majorityElementUingMooreVoting(int[] nums) {
+    // This Algorithm only works if the majority is guaranteed.
+    public int majorityElementUsingMooreVoting(int[] nums) {
         int count = 0;
         int candidate = 0;
 
@@ -53,4 +54,16 @@ public class MajorityElement_169 {
         return candidate;
     }
 
+    public static void main(String[] args) {
+        var sol = new MajorityElement_169();
+        int[] nums = {2,2,1,1,1,2,2};
+        System.out.println(sol.majorityElementUsingSort(nums));
+        System.out.println(sol.majorityElementUsingHashMap(nums));
+        System.out.println(sol.majorityElementUsingMooreVoting(nums));
+
+        nums = new int[]{3, 2, 3};
+        System.out.println(sol.majorityElementUsingSort(nums));
+        System.out.println(sol.majorityElementUsingHashMap(nums));
+        System.out.println(sol.majorityElementUsingMooreVoting(nums));
+    }
 }
