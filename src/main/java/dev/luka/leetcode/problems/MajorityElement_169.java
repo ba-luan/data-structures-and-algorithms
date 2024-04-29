@@ -49,6 +49,7 @@ public class MajorityElement_169 {
             } else {
                 count--;
             }
+//            count += (num == candidate ? 1 : -1); // alternative for if-else condition above
         }
 
         return candidate;

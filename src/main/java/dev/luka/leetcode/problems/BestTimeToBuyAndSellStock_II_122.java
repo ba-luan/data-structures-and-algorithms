@@ -14,10 +14,30 @@ public class BestTimeToBuyAndSellStock_II_122 {
         return maxProfit;
     }
 
-    public static void main(String[] args) {
-        int[] prices = {7, 1, 5, 3, 6, 4};
-        int result = maxProfit(prices);
-        System.out.println("Maximum Profit: " + result); // Output: Maximum Profit: 7
+    public static int maxProfit2Pointers(int[] prices) {
+        int maxProfit = 0;
+        int buyPrice, sellPrice;
+        int lastIndex = prices.length - 1;
+        for (int i = 0; i < lastIndex; i++) {
+            while (i < lastIndex && prices[i + 1] < prices[i]) {
+                i++;
+            }
+            buyPrice = prices[i];
+
+            while (i < lastIndex && prices[i + 1] > prices[i]) {
+                i++;
+            }
+            sellPrice = prices[i];
+
+            maxProfit += sellPrice - buyPrice;
+        }
+
+        return maxProfit;
     }
 
+    public static void main(String[] args) {
+        int[] prices = {7, 1, 5, 3, 6, 4};
+        System.out.println(maxProfit(prices)); // Output: Maximum Profit: 7
+        System.out.println(maxProfit2Pointers(prices));
+    }
 }
